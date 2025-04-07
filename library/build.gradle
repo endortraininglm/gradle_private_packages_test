@@ -1,0 +1,55 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
+
+group = 'com.endor'
+version = '1.0.0'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+    withJavadocJar()
+    withSourcesJar()
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            
+            groupId = 'com.endor'
+            artifactId = 'endor-utils'
+            version = '1.0.0'
+            
+            pom {
+                name = 'Endor Utilities'
+                description = 'A collection of utility functions for Java applications'
+            }
+        }
+    }
+    
+    repositories {
+        maven {
+            name = 'EndorArtifactory'
+            url = "https://endorlabs1.jfrog.io/artifactory/testpackage-nuget/"
+            credentials {
+                username = project.findProperty('artifactoryUsername') ?: System.getenv('ARTIFACTORY_USERNAME')
+                password = project.findProperty('artifactoryPassword') ?: System.getenv('ARTIFACTORY_PASSWORD')
+            }
+        }
+    }
+} 

@@ -8,7 +8,7 @@ version = '1.0-SNAPSHOT'
 
 repositories {
     maven {
-        url "https://endorlabs1.jfrog.io/artifactory/artifactory-build-info"
+        url "https://endorlabs1.jfrog.io/artifactory"
         credentials {
             username = project.findProperty('artifactoryUsername') ?: System.getenv('ARTIFACTORY_USERNAME')
             password = project.findProperty('artifactoryPassword') ?: System.getenv('ARTIFACTORY_PASSWORD')
@@ -18,6 +18,7 @@ repositories {
 }
 
 dependencies {
+    // Apache Commons Lang
     implementation 'org.apache.commons:commons-lang3:3.12.0'
     
     // Test dependencies

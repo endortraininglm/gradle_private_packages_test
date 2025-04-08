@@ -10,8 +10,8 @@ repositories {
     maven {
         url "https://endorlabs1.jfrog.io/artifactory/testpackage-nuget"
         credentials {
-            username = project.findProperty('artifactoryUsername') ?: System.getenv('ARTIFACTORY_USERNAME')
-            password = project.findProperty('artifactoryPassword') ?: System.getenv('ARTIFACTORY_PASSWORD')
+            username = System.getenv('ARTIFACTORY_USERNAME')
+            password = System.getenv('ARTIFACTORY_PASSWORD')
         }
     }
     mavenCentral()

@@ -45,10 +45,10 @@ publishing {
     repositories {
         maven {
             name = 'EndorArtifactory'
-            url = "https://endorlabs1.jfrog.io/artifactory/testpackage-nuget/"
+            url = project.findProperty('artifactory_contextUrl') + '/' + project.findProperty('artifactory_repo_name')
             credentials {
-                username = project.findProperty('artifactory_user') ?: System.getenv('ARTIFACTORY_USERNAME')
-                password = project.findProperty('artifactory_password') ?: System.getenv('ARTIFACTORY_PASSWORD')
+                username = project.findProperty('artifactory_user')
+                password = project.findProperty('artifactory_password')
             }
         }
     }

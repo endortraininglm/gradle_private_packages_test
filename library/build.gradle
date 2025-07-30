@@ -41,6 +41,14 @@ publishing {
             }
         }
     }
+
+    println "==== DEBUG: Artifactory Configuration ===="
+    println "Artifactory Context URL : ${artifactory_contextUrl}"
+    println "Artifactory Repo Name   : ${artifactory_repo_name}"
+    println "Artifactory Username    : ${artifactory_user ?: 'NOT SET'}"
+    println "Artifactory Password    : ${artifactory_password ? 'SET (' + artifactory_password.length() + ' chars)' : 'NOT SET'}"
+    println "Full Repository URL     : ${artifactory_contextUrl}/${artifactory_repo_name}"
+    println "==========================================="
     
     repositories {
         maven {

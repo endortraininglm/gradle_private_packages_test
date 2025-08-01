@@ -6,12 +6,20 @@ plugins {
 group = 'com.example'
 version = '1.0-SNAPSHOT'
 
+//println "==== DEBUG: Artifactory Configuration ===="
+//println "Artifactory Context URL : ${artifactory_contextUrl}"
+//println "Artifactory Repo Name   : ${artifactory_repo_name}"
+//println "Artifactory Username    : ${artifactory_user ?: 'NOT SET'}"
+//println "Artifactory Password    : ${artifactory_password ? 'SET (' + artifactory_password.length() + ' chars)' : 'NOT SET'}"
+//println "Full Repository URL     : ${artifactory_contextUrl}/${artifactory_repo_name}"
+//println "==========================================="
+
 repositories {
     maven {
-        url "https://endorlabs1.jfrog.io/artifactory/testpackage-nuget"
+        url = "${artifactory_contextUrl}/${artifactory_repo_name}"
         credentials {
-            username = project.findProperty('artifactory_user') ?: System.getenv('artifactoryUsername')
-            password = project.findProperty('artifactory_password') ?: System.getenv('artifactoryPassword')
+            username = artifactory_user
+            password = artifactory_password
         }
     }
     mavenCentral()
